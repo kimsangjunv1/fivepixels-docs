@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
-import { changelogEntries, newsletterPosts } from "@/lib/content";
-import { PUBLIC_ROUTES, SITE_URL } from "@/lib/site";
+import { changelogEntries, newsletterPosts } from "@/entities/content";
+import { PUBLIC_ROUTES, SITE_URL } from "@/shared/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();

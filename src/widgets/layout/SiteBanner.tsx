@@ -1,6 +1,6 @@
 "use client";
 
-import { useMessages } from "@/app/providers/LocaleProvider";
+import { useMessages } from "@/shared/i18n/useMessages";
 import { usePathname } from "next/navigation";
 
 export function SiteBanner() {

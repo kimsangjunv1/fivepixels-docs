@@ -1,4 +1,4 @@
-import { changelogEntries, changelogTypeLabels } from "@/lib/content";
+import { changelogEntries, changelogTypeLabels } from "@/entities/content";
 
 export function GET() {
     const markdown = changelogEntries

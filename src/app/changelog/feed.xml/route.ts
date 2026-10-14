@@ -1,5 +1,5 @@
-import { changelogEntries, changelogTypeLabels } from "@/lib/content";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { changelogEntries, changelogTypeLabels } from "@/entities/content";
+import { SITE_NAME, SITE_URL } from "@/shared/lib/site";
 
 function escapeXml(value: string) {
     return value.replace(/[<>&'"]/g, (character) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", "'": "&apos;", '"': "&quot;" })[character] ?? character);

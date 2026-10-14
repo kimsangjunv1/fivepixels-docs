@@ -5,7 +5,7 @@ import { JsonLd } from "@/app/JsonLd";
 import { GlobalErrorBoundary } from "@/app/providers/GlobalErrorBoundary";
 import { GlobalErrorListener } from "@/app/providers/GlobalErrorListener";
 import { LenisProvider } from "@/app/providers/LenisProvider";
-import { createPageMetadata } from "@/lib/seo";
+import { createPageMetadata } from "@/shared/lib/seo";
 import { Footer } from "@/widgets/layout/Footer";
 import { Header } from "@/widgets/layout/Header";
 import { SiteBanner } from "@/widgets/layout/SiteBanner";

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useMessages } from "@/app/providers/LocaleProvider";
+import { useMessages } from "@/shared/i18n/useMessages";
 
 export function Footer() {
     const { footer } = useMessages().layout;

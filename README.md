@@ -35,14 +35,17 @@ fivepixels는 웹 화면에서 버튼이나 문구 같은 요소를 선택해 �
 
 ```text
 src/
-├── app/        # 페이지 라우팅, 전역 레이아웃과 Provider
-├── views/      # 제품 소개와 가이드의 페이지 단위 화면 조합
-├── widgets/    # 소개 섹션, 문서, 데모와 공통 레이아웃
-├── shared/     # 공통 UI, 유틸리티와 스타일
-├── lib/        # 사이트 설정, SEO와 콘텐츠 처리
-├── content/    # 변경 이력, 로드맵과 뉴스레터 JSON 데이터
-└── i18n/       # 화면 문구와 가이드 내용, 코드 예시
+├── app/        # (site) 공개 라우팅, 전역 레이아웃과 Provider
+├── views/      # URL별 서버 page → 클라이언트 Panel 연결
+├── widgets/    # URL별 Panel, UI 섹션, 페이지 상태와 공통 레이아웃
+├── features/   # 문서 읽기, 데모 리뷰, 테스트 모달 등 재사용 기능
+├── entities/   # 콘텐츠 도메인 타입과 JSON 데이터
+└── shared/     # 공통 UI, API, SEO, 문구(i18n), 유틸리티와 스타일
 ```
+
+`npm run check:structure`로 라우트 구조와 import 방향을,
+`npm run check:api`로 공통 fetch 동작을 확인할 수 있습니다.
+라우트별 점검 결과는 [구조 점검 보고서](docs/structure-audit.md)에 정리했습니다.
 
 ## 참고 사항
 
