@@ -1,4 +1,4 @@
-import { createSoftwareApplicationJsonLd, createWebsiteJsonLd } from "@/lib/json-ld";
+import { createSoftwareApplicationJsonLd, createWebsiteJsonLd } from "@/shared/lib/json-ld";
 
 export function JsonLd() {
     const payload = [createWebsiteJsonLd(), createSoftwareApplicationJsonLd()];

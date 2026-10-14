@@ -1,3 +1,2 @@
-export { DashboardShell } from "./DashboardShell";
-export { ListDemo } from "./ListDemo";
+export { WorkspaceSummary, IssueBoard, RecentActivity } from "./Overview";
 export { Modal } from "./Modal";

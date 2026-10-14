@@ -5,7 +5,7 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useCallback, useEffect, useState } from "react";
 import { cn } from "@/shared/lib/utils";
 import { revealEase } from "@/shared/lib/motion";
-import { MaterialIcon } from "@/widgets/layout/MaterialIcon";
+import { MaterialIcon } from "@/shared/ui/MaterialIcon";
 import type { MegaMenuConfig, MegaMenuLink } from "@/widgets/layout/megaMenuNav";
 
 const MEGA_MENU_PILL_LAYOUT_ID = "mega-menu-trigger-pill";

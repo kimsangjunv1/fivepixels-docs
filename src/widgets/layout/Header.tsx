@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
-import { useMessages } from "@/app/providers/LocaleProvider";
+import { useMessages } from "@/shared/i18n/useMessages";
 import { cn } from "@/shared/lib/utils";
 import { MegaMenuBar, MegaMenuFloatingPanel, getMegaMenuSlideDirection } from "@/widgets/layout/MegaMenu";
 import { ThemeToggle } from "@/widgets/layout/ThemeToggle";
