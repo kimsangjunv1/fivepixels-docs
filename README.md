@@ -1,8 +1,5 @@
 # fivepixels Website
 
-React 라이브러리 fivepixels를 소개하는 웹사이트입니다.
-사용 방법을 정리한 문서와 라이브러리를 써볼 수 있는 데모 화면도 함께 만들었습니다.
-
 [서비스 바로가기](https://library.codi-agit.com/) · [데모](https://library.codi-agit.com/example/01) · [라이브러리 저장소](https://github.com/kimsangjunv1/fivepixels)
 
 ## 소개
@@ -17,17 +14,17 @@ fivepixels는 웹 화면에서 버튼이나 문구 같은 요소를 선택해 �
 
 ## 사용 기술
 
-| 구분 | 기술 | 사용한 곳 |
-| --- | --- | --- |
-| 프레임워크 | Next.js 16 · React 19 | 페이지 구성, 서버 렌더링과 메타데이터 |
-| 언어 | TypeScript | 컴포넌트와 콘텐츠 데이터의 타입 정의 |
-| 스타일 | Tailwind CSS 4 · SCSS | 반응형 화면과 공통 스타일 |
-| 상태 관리 | Zustand | 모달과 데모 화면의 상태 관리 |
-| 인터랙션 | Motion · Lenis | 화면 애니메이션과 부드러운 스크롤 |
-| 코드 표시 | prism-react-renderer · Prism.js | 가이드와 문서의 코드 구문 강조 |
-| 피드백 | @fivepixels-js/react | 데모 화면의 요소 선택과 피드백 작성 |
-| 방문 분석 | Vercel Analytics | 배포 사이트의 방문 통계 |
-| 코드 검사 | ESLint | 코드 규칙 검사 |
+| 구분       | 기술                            | 사용한 곳                             |
+| ---------- | ------------------------------- | ------------------------------------- |
+| 프레임워크 | Next.js 16 · React 19           | 페이지 구성, 서버 렌더링과 메타데이터 |
+| 언어       | TypeScript                      | 컴포넌트와 콘텐츠 데이터의 타입 정의  |
+| 스타일     | Tailwind CSS 4 · SCSS           | 반응형 화면과 공통 스타일             |
+| 상태 관리  | Zustand                         | 모달과 데모 화면의 상태 관리          |
+| 인터랙션   | Motion · Lenis                  | 화면 애니메이션과 부드러운 스크롤     |
+| 코드 표시  | prism-react-renderer · Prism.js | 가이드와 문서의 코드 구문 강조        |
+| 피드백     | @fivepixels-js/react            | 데모 화면의 요소 선택과 피드백 작성   |
+| 방문 분석  | Vercel Analytics                | 배포 사이트의 방문 통계               |
+| 코드 검사  | ESLint                          | 코드 규칙 검사                        |
 
 ## 프로젝트 구조
 
