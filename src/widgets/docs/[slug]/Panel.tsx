@@ -18,7 +18,7 @@ export default function Panel({ slug }: { slug: string }) {
                     <Layer.Sidebar collection={collection} page={page} />
                     <div className="min-w-0 flex-1">
                         <Layer.MobileNav collection={collection} page={page} />
-                        <Layer.Document collection={collection} hero={page.hero} sections={page.sections} />
+                        <Layer.Document collection={collection} hero={page.hero} sections={page.sections} slug={page.slug} />
                     </div>
                     <Layer.TableOfContents collection={collection} page={page} />
                 </div>

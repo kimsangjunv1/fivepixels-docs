@@ -11,6 +11,7 @@ import { QuickStartHero } from "./QuickStartHero";
 import { CopyBlock } from "./CopyBlock";
 import { CustomSetupBuilder } from "./CustomSetupBuilder";
 import { GuideTabs } from "./GuideTabs";
+import { DocumentNavigation } from "./DocumentNavigation";
 
 const expandedText = "font-[family-name:var(--font-manrope)] font-semibold tracking-[-0.025em]";
 
@@ -136,7 +137,7 @@ function ReferenceSection({ section }: { section: GuideSection }) {
     );
 }
 
-export function Document({ collection, hero, sections }: { collection: GuideCollectionMessages; hero: GuideHero; sections: GuideSection[] }) {
+export function Document({ collection, hero, sections, slug }: { collection: GuideCollectionMessages; hero: GuideHero; sections: GuideSection[]; slug?: string }) {
     const quickStartSections = sections.filter((s) => s.variant === "quick-start");
     const referenceSections = sections.filter((s) => s.variant === "reference");
 
@@ -172,6 +173,7 @@ export function Document({ collection, hero, sections }: { collection: GuideColl
                     ))}
                 </div>
             )}
+            {slug ? <DocumentNavigation collection={collection} slug={slug} /> : null}
         </article>
     );
 }

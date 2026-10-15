@@ -44,6 +44,7 @@ export type GuidePageMessages = {
     description: string;
     hero: GuideHero;
     sections: GuideSection[];
+    navigation?: { previous?: string; next?: string };
 };
 
 export type GuideNavGroup = {
