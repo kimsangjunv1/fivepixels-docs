@@ -18,7 +18,6 @@ const contentNavItems = [
 ] as const;
 
 function getActiveMegaMenuId(pathname: string) {
-    if (pathname.startsWith("/guides")) return "guides";
     if (pathname.startsWith("/docs")) return "docs";
     if (pathname.startsWith("/example")) return "examples";
     if (pathname === "/") return "main";

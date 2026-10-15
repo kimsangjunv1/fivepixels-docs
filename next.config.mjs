@@ -16,7 +16,7 @@ const nextConfig = {
             },
             {
                 source: "/fivepixels/guide",
-                destination: "/guides/quickstart",
+                destination: "/docs/quickstart",
                 permanent: true,
             },
             {
@@ -26,7 +26,7 @@ const nextConfig = {
             },
             {
                 source: "/guide",
-                destination: "/guides/quickstart",
+                destination: "/docs/quickstart",
                 permanent: true,
             },
             {
@@ -34,11 +34,20 @@ const nextConfig = {
                 destination: "/docs/persistence",
                 permanent: true,
             },
+            ...[
+                ["/guides", "/docs"],
+                ["/guides/rollout", "/docs/setup"],
+                ["/guides/rules", "/docs/workflow"],
+                ["/guides/roles", "/docs/workflow"],
+                ["/guides/dom-tagging", "/docs/dom-attributes"],
+                ["/guides/self-hosting", "/docs/artemis72"],
+            ].map(([source, destination]) => ({ source, destination, permanent: true })),
             {
                 source: "/guides/shortcuts",
                 destination: "/docs/modes",
                 permanent: true,
             },
+            { source: "/guides/:slug", destination: "/docs/:slug", permanent: true },
             {
                 source: "/docs/modes-and-shortcuts",
                 destination: "/docs/modes",

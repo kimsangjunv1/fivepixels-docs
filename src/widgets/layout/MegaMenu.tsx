@@ -9,7 +9,7 @@ import { MaterialIcon } from "@/shared/ui/MaterialIcon";
 import type { MegaMenuConfig, MegaMenuLink } from "@/widgets/layout/megaMenuNav";
 
 const MEGA_MENU_PILL_LAYOUT_ID = "mega-menu-trigger-pill";
-const MEGA_MENU_ORDER = ["main", "guides", "docs", "examples"] as const;
+const MEGA_MENU_ORDER = ["main", "docs", "examples"] as const;
 const MEGA_MENU_SLIDE_OFFSET = 56;
 
 export type MegaMenuSlideDirection = 1 | -1;

@@ -69,7 +69,7 @@ export function IntroSection() {
 
                             <Link
                                 className="flex w-max items-center gap-[1.6rem] rounded-[1.6rem] bg-[var(--adaptive-surface)] px-[1.6rem] py-[1.2rem] text-[var(--adaptive-text-primary)] shadow-[var(--shadow-popup)]"
-                                href="/guides/quickstart"
+                                href="/docs/quickstart"
                             >
                                 {intro.guideCta} <ArrowRight size={17} />
                             </Link>

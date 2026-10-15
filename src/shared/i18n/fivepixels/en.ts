@@ -161,7 +161,7 @@ export const fivepixelsEn: FivepixelsMessages = {
         {
             icon: "person_pin",
             title: "Client handoff guide",
-            description: "Clients can join reviews quickly via /guides/client",
+            description: "Clients can join reviews quickly via /docs/client",
         },
         {
             icon: "code",

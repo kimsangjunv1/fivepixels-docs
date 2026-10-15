@@ -12,96 +12,34 @@ function makePage(slug: string, eyebrow: string, title: string, description: str
     };
 }
 
-const quickstart = makePage(
-    "quickstart",
-    "START TODAY",
-    "Leave feedback directly on the screen",
-    "Reviewers learn the workflow while developers complete the five-minute setup. Start by creating one feedback item on one staging page.",
-    [
-        {
-            id: "choose-your-path",
-            title: "Start with your role",
-            stepLabel: "01 / QUICK START",
-            variant: "quick-start",
-            blocks: [
-                {
-                    type: "tabs",
-                    tabs: [
-                        {
-                            label: "Reviewer",
-                            blocks: [
-                                {
-                                    type: "ordered",
-                                    items: [
-                                        "Open the staging URL your team shared.",
-                                        "Select Report mode from the panel.",
-                                        "Click the element, write the request, and submit.",
-                                        "Select View mode from the panel to see markers and the list.",
-                                        "When words are not enough, right-click the element and add a UI Edit preview.",
-                                    ],
-                                },
-                                {
-                                    type: "callout",
-                                    variant: "warning",
-                                    text: "UI Edit lasts only for the current tab session. A refresh restores the original UI, and it never edits the codebase automatically.",
-                                },
-                            ],
-                        },
-                        {
-                            label: "Developer",
-                            blocks: [
-                                {
-                                    type: "codeRaw",
-                                    language: "tsx",
-                                    code: [
-                                        'import { FivePixels } from "@fivepixels-js/react";',
-                                        "",
-                                        "export default function App() {",
-                                        "  return (",
-                                        "    <>",
-                                        "      <FivePixels",
-                                        '        project={{ id: "my-app" }}',
-                                        "        visibility={{ devOnly: true }}",
-                                        "      />",
-                                        '      <button data-report-id="hero-cta">Get started</button>',
-                                        "    </>",
-                                        "  );",
-                                        "}",
-                                    ].join("\n"),
-                                },
-                                {
-                                    type: "list",
-                                    items: [
-                                        "Use a React 18+ browser runtime.",
-                                        "Add FivePixels once near the root of the app.",
-                                        "Add data-report-id to the highest-value review targets first.",
-                                        "The UI renders in Shadow DOM, so no CSS import is required.",
-                                    ],
-                                },
-                            ],
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            id: "success",
-            title: "Success criteria",
-            variant: "reference",
-            blocks: [
-                { type: "list", items: ["Create one feedback item on staging.", "See its marker at the same location in View mode.", "Choose the storage and visibility policy for the team."] },
-                { type: "link", href: "/docs/setup", label: "Read the setup documentation" },
-            ],
-        },
-    ],
-    { cta: "Setup docs", ctaHref: "/docs/setup", installCommand: "npm install @fivepixels-js/react react react-dom" },
-);
+const quickstart = makePage("quickstart", "FIRST FEEDBACK", "Leave your first feedback", "Pick a spot on your page, leave a note, and check that it was saved.", [
+    {
+        id: "report",
+        title: "Leave a note",
+        variant: "quick-start",
+        stepLabel: "01 / REPORT",
+        blocks: [
+            { type: "ordered", items: ["Open a page where Fivepixels is installed.", "Open the Fivepixels panel and select Report.", "Click the part of the page you want to review.", "Write what needs to change and submit."] },
+        ],
+    },
+    {
+        id: "check",
+        title: "Find it again",
+        variant: "quick-start",
+        stepLabel: "02 / CHECK",
+        blocks: [
+            { type: "ordered", items: ["Select View in the panel.", "Open the marker to read your feedback.", "Refresh the page and check that the feedback is still there."] },
+            { type: "callout", variant: "info", text: "With the default localStorage mode, feedback stays in this browser. Sharing the page URL does not share its feedback." },
+            { type: "link", href: "/docs/workflow", label: "Ready to review with your team?" },
+        ],
+    },
+], { cta: "Install Fivepixels", ctaHref: "/docs/setup" });
 
 const react = makePage(
     "react",
-    "FRAMEWORK QUICKSTART",
+    "INSTALL",
     "Use fivepixels with React",
-    "Install Fivepixels, add it once to your React app, and mark the first parts your team wants to review.",
+    "Install Fivepixels and add it once to your React app. No server setup needed.",
     [
         {
             id: "install",
@@ -110,7 +48,7 @@ const react = makePage(
             variant: "quick-start",
             blocks: [
                 { type: "codeRaw", language: "bash", code: "npm install @fivepixels-js/react react react-dom" },
-                { type: "paragraph", text: "Fivepixels supports React 18 and later. Its interface is isolated in Shadow DOM, so the application does not need a separate stylesheet import." },
+                { type: "paragraph", text: "Use React 18 or later. Fivepixels includes its own styles, so no CSS import is needed." },
             ],
         },
         {
@@ -121,18 +59,18 @@ const react = makePage(
                 {
                     type: "codeRaw",
                     language: "tsx",
-                    code: 'import { FivePixels } from "@fivepixels-js/react";\n\nexport default function App() {\n  return (\n    <>\n      <FivePixels\n        project={{ id: "my-app" }}\n        visibility={{ devOnly: true }}\n      />\n      <main>{/* Your application */}</main>\n    </>\n  );\n}',
+                    code: 'import { FivePixels } from "@fivepixels-js/react";\n\nexport default function App() {\n  return (\n    <>\n      <FivePixels\n        project={{ id: "my-app" }}\n      />\n      <main>{/* Your application */}</main>\n    </>\n  );\n}',
                 },
                 { type: "callout", variant: "info", text: "Add FivePixels once near the root of the app so it can follow every page your team reviews." },
             ],
         },
         {
-            id: "mark",
-            title: "Mark the first review targets",
+            id: "check",
+            title: "Open your app",
             variant: "reference",
             blocks: [
-                { type: "codeRaw", language: "tsx", code: '<section data-report-id="home-hero" data-report-type="group">\n  <button data-report-id="home-hero-cta">Get started</button>\n</section>' },
-                { type: "paragraph", text: "Use stable data-report-id values on the highest-value sections, controls, and form fields before expanding the tagging scope." },
+                { type: "paragraph", text: "Start your app and open it in the browser. You should see the Fivepixels button. Feedback is saved in this browser by default." },
+                { type: "link", href: "/docs/quickstart", label: "Leave your first feedback" },
             ],
         },
     ],
@@ -141,9 +79,9 @@ const react = makePage(
 
 const nextjs = makePage(
     "nextjs",
-    "FRAMEWORK QUICKSTART",
+    "INSTALL",
     "Use fivepixels with Next.js",
-    "Add Fivepixels to a Next.js App Router project with a small Client Component, then include it once in the root layout.",
+    "Install Fivepixels in a Next.js App Router project. Start with feedback saved in your browser.",
     [
         {
             id: "install",
@@ -160,9 +98,9 @@ const nextjs = makePage(
                 {
                     type: "codeRaw",
                     language: "tsx",
-                    code: '// src/components/FivepixelsClient.tsx\n"use client";\n\nimport { FivePixels } from "@fivepixels-js/react";\n\nexport function FivepixelsClient() {\n  return (\n    <FivePixels\n      project={{ id: "my-next-app" }}\n      visibility={{ devOnly: true }}\n    />\n  );\n}',
+                    code: '// src/components/FivepixelsClient.tsx\n"use client";\n\nimport { FivePixels } from "@fivepixels-js/react";\n\nexport function FivepixelsClient() {\n  return (\n    <FivePixels\n      project={{ id: "my-next-app" }}\n    />\n  );\n}',
                 },
-                { type: "callout", variant: "info", text: "Keep the client boundary in this small component. The root layout can remain a Server Component." },
+                { type: "callout", variant: "info", text: 'Keep "use client" at the top of this file because Fivepixels runs in the browser.' },
             ],
         },
         {
@@ -175,76 +113,15 @@ const nextjs = makePage(
                     language: "tsx",
                     code: '// src/app/layout.tsx\nimport { FivepixelsClient } from "@/components/FivepixelsClient";\n\nexport default function RootLayout({ children }: { children: React.ReactNode }) {\n  return (\n    <html lang="en">\n      <body>\n        <FivepixelsClient />\n        {children}\n      </body>\n    </html>\n  );\n}',
                 },
-                { type: "paragraph", text: "Add stable data-report-id attributes inside individual pages and components as your team expands the review scope." },
+                { type: "paragraph", text: "Start your app and open it in the browser. You should see the Fivepixels button. Feedback is saved in this browser by default." },
+                { type: "link", href: "/docs/quickstart", label: "Leave your first feedback" },
             ],
         },
     ],
     { installCommand: "npm install @fivepixels-js/react react react-dom" },
 );
 
-const rollout = makePage("rollout", "ONE WEEK", "A simple one-week plan", "Start on one busy review page before adding Fivepixels to more of the app.", [
-    {
-        id: "week",
-        title: "Day 1 through Day 6+",
-        variant: "quick-start",
-        stepLabel: "ROLLOUT",
-        blocks: [
-            {
-                type: "table",
-                headers: ["When", "Action", "Success"],
-                rows: [
-                    ["Day 1", "Mount on one staging page", "Confirm devOnly and add 1–3 ids"],
-                    ["Day 2", "Invite 2–3 teammates", "Create five feedback items"],
-                    ["Day 3", "Agree on team rules", "Write one short rules page"],
-                    ["Day 4", "Run one external review", "Send the client note"],
-                    ["Day 5", "Review unresolved items", "Use View mode and status filters"],
-                    ["Day 6+", "Add shared storage or GitHub when needed", "Everyone sees the same list"],
-                ],
-            },
-            { type: "codeRaw", language: "text", code: "Day 0  Install + <FivePixels /> + devOnly\nDay 1  Add data-report-id on one busy page\nDay 2+ Team rules → Adapter/GitHub when needed" },
-        ],
-    },
-    {
-        id: "guardrail",
-        title: "Before expanding",
-        variant: "reference",
-        blocks: [{ type: "list", items: ["project.id / env / version policy", "localStorage or API storage", "Modal and tab attribute strategy", "Production visibility policy"] }],
-    },
-]);
-
-const rules = makePage("rules", "TEAM RULES", "Agree on a few rules first", "The important part is a shared definition of where feedback lives and when it is resolved.", [
-    {
-        id: "template",
-        title: "Recommended rules",
-        variant: "quick-start",
-        stepLabel: "COPY & USE",
-        blocks: [
-            {
-                type: "table",
-                headers: ["Rule", "Decision"],
-                rows: [
-                    ["Where", "Leave feedback only on the staging URL."],
-                    ["Naming", "Use kebab-case for data-report-id."],
-                    ["Scope", "Keep one change request in one case."],
-                    ["Resolve", "Mark resolved after rechecking staging."],
-                    ["Clients", "Send the URL with the short client note."],
-                    ["Hidden UI", "Connect data-fp-view and data-fp-open values."],
-                ],
-            },
-        ],
-    },
-    {
-        id: "ownership",
-        title: "Ownership and status",
-        variant: "reference",
-        blocks: [
-            { type: "paragraph", text: "A useful default is: PMs set priority and owner, developers request a recheck after the fix, and the original reviewer resolves the case." },
-            { type: "link", href: "/guides/workflow", label: "See the review workflow" },
-        ],
-    },
-]);
-
-const client = makePage("client", "CLIENT HANDOFF", "Send this note to your client", "Collect precise locations on staging without teaching another application.", [
+const client = makePage("client", "CLIENT HANDOFF", "Ask a client to review", "Send a short note so your client knows where to leave feedback.", [
     {
         id: "message",
         title: "Copyable client note",
@@ -265,78 +142,36 @@ const client = makePage("client", "CLIENT HANDOFF", "Send this note to your clie
         blocks: [
             {
                 type: "list",
-                items: ["UI Edit previews reset after refresh.", "Feedback text persists according to the project storage mode.", "Confirm login and display-name rules before sharing the link."],
+                items: ["Use API mode before asking clients to leave feedback you need to see.", "Sharing a URL does not share feedback saved in localStorage.", "Check that the client can open the page and leave a note."],
             },
         ],
     },
 ]);
 
-const workflow = makePage("workflow", "REVIEW FLOW", "One flow from report to resolution", "Keep the location, discussion, and status together through the full review lifecycle.", [
+const workflow = makePage("workflow", "TEAM REVIEW", "Review with your team", "Share feedback, make the change, and ask the person who reported it to check again.", [
+    {
+        id: "share",
+        title: "Make sure everyone sees the same feedback",
+        variant: "quick-start",
+        stepLabel: "01 / SHARE",
+        blocks: [
+            { type: "paragraph", text: "localStorage saves feedback in one browser. To work on the same feedback together, connect your API. Artemis72, our planned hosted service, is not available yet." },
+            { type: "link", href: "/docs/api-connection", label: "Connect your API" },
+        ],
+    },
     {
         id: "flow",
-        title: "Recommended flow",
-        variant: "quick-start",
-        stepLabel: "WORKFLOW",
-        blocks: [
-            {
-                type: "codeRaw",
-                language: "text",
-                code: "Report (open)\n  → UI Edit preview (optional)\n  → Reply / request review\n  → Fix\n  → Recheck\n  → Resolve\n  → GitHub Issue (optional)\n  → Archive (optional)",
-            },
-        ],
-    },
-    {
-        id: "status",
-        title: "Status transitions",
+        title: "Keep the review simple",
         variant: "reference",
         blocks: [
-            {
-                type: "table",
-                headers: ["Current", "Next"],
-                rows: [
-                    ["open", "git_issued · resolved · archived"],
-                    ["git_issued", "resolved · archived"],
-                    ["resolved", "open · archived"],
-                    ["archived", "Follow the restore policy in the product UI"],
-                ],
-            },
-            { type: "paragraph", text: "Split unrelated requests into cases, and connect replies to the matching case so every recheck keeps its context." },
+            { type: "ordered", items: ["Leave one change request per feedback item.", "Agree on who will make the change.", "Keep questions and updates in the same feedback thread.", "After the fix, ask the original reviewer to check the page and mark it resolved."] },
+            { type: "paragraph", text: "Anyone on the team can report a problem. You do not need a separate process for designers, developers, or clients." },
+            { type: "link", href: "/docs/client", label: "Copy a review request for your client" },
         ],
     },
 ]);
 
-const roles = makePage("roles", "WHO DOES WHAT", "Show each role what it needs", "Role selection recommends a starting set of tabs. Teams only need to agree on who owns each status transition.", [
-    {
-        id: "journeys",
-        title: "Role journeys",
-        variant: "quick-start",
-        stepLabel: "ROLES",
-        blocks: [
-            {
-                type: "table",
-                headers: ["Role", "Primary action", "Frequent tools"],
-                rows: [
-                    ["QA / tester", "Mark bugs and recheck", "Report/View, filters, status"],
-                    ["Designer", "Show visual intent", "UI Edit, Before/After"],
-                    ["PM / planner", "Track owners and priority", "List, Needs Attention"],
-                    ["Developer", "Install, tag, integrate", "Adapter, devOnly, onNavigate"],
-                    ["Client", "Mark the requested change", "Report mode"],
-                ],
-            },
-        ],
-    },
-    {
-        id: "panel-role",
-        title: "Panel role values",
-        variant: "reference",
-        blocks: [
-            { type: "codeRaw", language: "text", code: "general · qa · developer · designer · planner · general-user" },
-            { type: "callout", variant: "info", text: "A panel role suggests tabs; it is not an authorization rule. Configure authentication and reviewers separately." },
-        ],
-    },
-]);
-
-const faq = makePage("faq", "FAQ", "Questions teams ask before adopting", "Be clear about what fivepixels does—and what it does not do.", [
+const faq = makePage("faq", "FAQ", "Frequently asked questions", "A few things to know before you start.", [
     {
         id: "answers",
         title: "Core answers",
@@ -347,10 +182,10 @@ const faq = makePage("faq", "FAQ", "Questions teams ask before adopting", "Be cl
                 headers: ["Question", "Answer"],
                 rows: [
                     ["Does it edit the code?", "No. UI Edit is session-only and resets on refresh."],
-                    ["Can clients use it?", "Yes. Share staging with the client guide."],
+                    ["Can clients use it?", "Yes. Use API mode for shared feedback, then send the client review note."],
                     ["Can non-developers use it?", "A developer installs it once; reviewers can run the workflow afterward."],
-                    ["Will it break our CSS?", "The UI is isolated in Shadow DOM."],
-                    ["Does it work in SPAs?", "Use pathname scope and onNavigate, plus data-fp-* attributes for hidden views."],
+                    ["Will it break our CSS?", "Fivepixels keeps its styles separate from your app. No CSS import is needed."],
+                    ["Does it work in SPAs?", "Yes. See feedback location settings if markers need to follow another page, modal, or tab."],
                     ["How do we share data?", "localStorage is device-local. Use an API Adapter or manual JSON transfer."],
                     ["Should it run in production?", "Usually it is limited to staging with visibility settings."],
                     ["Does it replace E2E tests?", "No. It is a React library for on-screen review and communication."],
@@ -396,94 +231,26 @@ const domTagging = makePage("dom-tagging", "DOM TAGGING", "Use stable data-repor
     },
 ]);
 
-const setup = makePage(
-    "setup",
-    "GET STARTED",
-    "Add Fivepixels to your React app",
-    "Install Fivepixels, check that it appears, then choose where to save feedback.",
-    [
-        {
-            id: "install",
-            title: "Install and add Fivepixels",
-            variant: "quick-start",
-            stepLabel: "01 / INSTALL",
-            blocks: [
-                { type: "codeRaw", language: "bash", code: "npm install @fivepixels-js/react react react-dom" },
-                { type: "paragraph", text: "Add FivePixels once near the root of App.tsx. In Next.js, place it in a small Client Component and render that component from app/layout.tsx." },
-                { type: "codeRaw", language: "tsx", code: 'import { FivePixels } from "@fivepixels-js/react";\n\n<FivePixels project={{ id: "my-app" }} />' },
-                { type: "callout", variant: "info", text: "You should now see the Fivepixels button in a corner of the screen. No CSS import is needed." },
-            ],
-        },
-        {
-            id: "choose-storage",
-            title: "Choose where to save feedback",
-            variant: "reference",
-            blocks: [
-                { type: "paragraph", text: "Pick the option that fits how you work today. You can change it later." },
-                {
-                    type: "actions",
-                    links: [
-                        { href: "/docs/persistence#local-storage", label: "localStorage", description: "Personal use · No backend needed" },
-                        { href: "/docs/persistence#api", label: "API", description: "Team use · Share through your backend" },
-                    ],
-                },
-            ],
-        },
-        {
-            id: "staging",
-            title: "Safe setup for staging",
-            variant: "reference",
-            blocks: [
-                {
-                    type: "codeRaw",
-                    language: "tsx",
-                    code: '<FivePixels\n  project={{ id: "my-app", env: "stage", version: "1.2.0" }}\n  visibility={{ enabled: true, devOnly: true }}\n  ui={{ appearance: "system", locale: "en" }}\n/>',
-                },
-                { type: "callout", variant: "warning", text: "devOnly: true hides Fivepixels in production builds. Turn it off if your staging site is built in production mode." },
-            ],
-        },
-        {
-            id: "remote",
-            title: "Connect your API",
-            variant: "reference",
-            blocks: [
-                { type: "paragraph", text: "Only use this step when feedback must be shared across browsers. A FivePixelsAdapter connects Fivepixels to your backend." },
-                {
-                    type: "codeRaw",
-                    language: "tsx",
-                    code: [
-                        'import { useMemo } from "react";',
-                        'import { FivePixels, type FivePixelsAdapter } from "@fivepixels-js/react";',
-                        "",
-                        "function createAdapter(): FivePixelsAdapter {",
-                        '  const base = "/api/v1/fivepixels/projects/my-app";',
-                        "  return {",
-                        "    markers: {",
-                        "      list: ({ pathname }) =>",
-                        '        fetch(base + "/feedbacks/markers?pathname=" + encodeURIComponent(pathname)).then((r) => r.json()),',
-                        "    },",
-                        "    feedback: {",
-                        '      create: (payload) => fetch(base + "/feedbacks", {',
-                        '        method: "POST", body: JSON.stringify(payload),',
-                        "      }).then((r) => r.json()),",
-                        '      update: (id, payload) => fetch(base + "/feedbacks/" + id, {',
-                        '        method: "PATCH", body: JSON.stringify(payload),',
-                        "      }).then((r) => r.json()),",
-                        "    },",
-                        "  };",
-                        "}",
-                        "",
-                        "const adapter = useMemo(() => createAdapter(), []);",
-                        '<FivePixels sync="api" adapter={adapter} project={{ id: "my-app", env: "stage" }} />',
-                    ].join("\n"),
-                },
-                { type: "callout", variant: "warning", text: "Create the Adapter once with useMemo or outside the component. Creating it again on every render can repeat requests." },
-            ],
-        },
-    ],
-);
+const setup = makePage("setup", "INSTALL", "Install Fivepixels", "Choose your framework, add Fivepixels, and open your app. Start without a server.", [
+    {
+        id: "install",
+        title: "Choose your framework",
+        variant: "quick-start",
+        stepLabel: "INSTALL",
+        blocks: [
+            { type: "paragraph", text: "You need a React 18 or later app. Choose the instructions for your project." },
+            { type: "actions", links: [
+                { href: "/docs/react", label: "React", description: "Add Fivepixels to your app" },
+                { href: "/docs/nextjs", label: "Next.js", description: "For projects using the App Router" },
+            ] },
+            { type: "callout", variant: "info", text: "Feedback is saved in the current browser with localStorage by default. You can connect your API later when you need shared feedback." },
+            { type: "link", href: "/docs/quickstart", label: "Already installed? Leave your first feedback" },
+        ],
+    },
+]);
 
-const domAttributes = makePage("dom-attributes", "DOM ATTRIBUTES", "Restore markers reliably", "Separate the stable element id from optional grouping and hidden-view reveal attributes.", [
+const domAttributes = makePage("dom-attributes", "DOM ATTRIBUTES", "Keep feedback in the right place", "Give important elements a stable name so feedback can find them again after the page changes.", [
+    ...domTagging.sections.slice(0, 1),
     {
         id: "attributes",
         title: "Attribute reference",
@@ -719,10 +486,10 @@ const apiFullSetup = [
     "}",
 ].join("\n");
 
-const persistence = makePage(
-    "persistence",
-    "SAVE FEEDBACK",
-    "Choose where to save feedback",
+const storageExamples = makePage(
+    "storage-settings",
+    "MORE SETTINGS",
+    "Storage settings and examples",
     "Save feedback in your browser, share it through your own API, or follow the upcoming Artemis72 service.",
     [
         {
@@ -897,6 +664,7 @@ const persistence = makePage(
                                         '      project={{ id: "my-app", env: "stage" }}',
                                         '      sync="api"',
                                         "      adapter={adapter}",
+                                        "      require={{ authLogin: false, reviewerKey: false }}",
                                         "    />",
                                         "  );",
                                         "}",
@@ -1085,7 +853,7 @@ const persistence = makePage(
         },
         {
             id: "artemis72",
-            title: "Artemis72 and what you build",
+            title: "Required API functions",
             variant: "reference",
             blocks: [
                 { type: "callout", variant: "info", text: "Artemis72 is a planned hosted service for Fivepixels. It is still in preparation, so setup code is not available yet." },
@@ -1300,162 +1068,195 @@ const api = makePage("api", "API REFERENCE", "FivePixels Props at a glance", "Fi
             { type: "paragraph", text: "Use the package types FivePixelsProps, FivePixelsAdapter, and ReportFeedback/ReportCase/ReportReply as the source of truth." },
         ],
     },
+    {
+        id: "more",
+        title: "More settings and examples",
+        variant: "reference",
+        blocks: [{ type: "actions", links: [
+            { href: "/docs/storage-settings", label: "Storage examples" },
+            { href: "/docs/modes", label: "Report and View" },
+            { href: "/docs/panel-and-tabs", label: "Panel and tabs" },
+            { href: "/docs/mentions-and-thread", label: "Replies and mentions" },
+            { href: "/docs/import-export", label: "Import and export feedback" },
+            { href: "/docs/custom-ui", label: "Build your own UI" },
+        ] }],
+    },
 ]);
 
-const edgeCases = makePage("edge-cases", "EDGE CASES", "Common adoption pitfalls", "Most missing or misplaced markers come from identifiers, hidden UI, routing, or unstable Adapter references.", [
+const edgeCases = makePage("edge-cases", "HELP", "Troubleshooting", "Start with the problem you see on the page.", [
     {
-        id: "cases",
-        title: "Edge cases",
+        id: "button",
+        title: "The Fivepixels button does not appear",
         variant: "reference",
         blocks: [
-            {
-                type: "table",
-                headers: ["Topic", "Response"],
-                rows: [
-                    ["Missing id", "Add data-report-id to the selectable root"],
-                    ["Duplicate id", "Use a stable unique id per item"],
-                    ["group ↔ item change", "Check existing marker restoration"],
-                    ["Modal or tab", "Use matching data-fp-view and data-fp-open values"],
-                    ["SPA routing", "Use onNavigate and pathname scope"],
-                    ["Production-built staging", "Confirm devOnly behavior"],
-                    ["Inline Adapter", "Keep it stable with useMemo or module scope"],
-                    ["Version change", "Agree on data-scope behavior"],
-                ],
-            },
+            { type: "list", items: ["Make sure FivePixels is included in the page you opened.", 'In Next.js, put FivePixels in a file with "use client" at the top.', "If you set visibility.devOnly to true, the button is hidden in production builds. This also applies to staging sites built in production mode."] },
+            { type: "link", href: "/docs/setup", label: "Check the installation steps" },
         ],
     },
     {
-        id: "checklist",
-        title: "Before rollout",
+        id: "sharing",
+        title: "My teammate cannot see my feedback",
         variant: "reference",
-        blocks: [{ type: "list", items: ["Storage mode", "project.id / env / version", "Initial tagging scope", "Modal and tab attribute strategy", "Cross-page onNavigate", "Production visibility"] }],
+        blocks: [
+            { type: "paragraph", text: "localStorage only saves feedback in your current browser. For shared feedback, connect your API and use the same project id, environment, and version across the team." },
+            { type: "link", href: "/docs/api-connection", label: "Connect your API" },
+        ],
+    },
+    {
+        id: "locations",
+        title: "A marker is missing or in the wrong place",
+        variant: "reference",
+        blocks: [
+            { type: "list", items: ["Give the element a stable, unique data-report-id. Avoid list indexes.", "If the element is inside a closed modal or tab, Fivepixels needs to know how to open it.", "For feedback on another page, connect onNavigate to your app's router."] },
+            { type: "link", href: "/docs/dom-attributes", label: "Set up feedback locations" },
+        ],
+    },
+    {
+        id: "api",
+        title: "Feedback does not save through my API",
+        variant: "reference",
+        blocks: [
+            { type: "list", items: ["Check that your server can load, create, and update feedback.", "Check the failed request in your browser's Network tab.", "Create the adapter once with useMemo or outside the component."] },
+            { type: "link", href: "/docs/storage-settings#api", label: "Check the API example" },
+        ],
     },
 ]);
 
-const selfHosting = makePage(
-    "self-hosting",
-    "SELF-HOSTING",
-    "Self-host Fivepixels",
-    "Choose the part of the Fivepixels self-hosting guide you want to explore. Detailed deployment instructions can be added as the self-hosted services are finalized.",
-    [
-        {
-            id: "auth",
-            title: "Auth",
-            variant: "reference",
-            blocks: [{ type: "paragraph", text: "This section is ready for the authentication and reviewer identity setup required by a self-hosted Fivepixels environment." }],
-        },
-        {
-            id: "realtime",
-            title: "Realtime",
-            variant: "reference",
-            blocks: [{ type: "paragraph", text: "This section is ready for realtime feedback, reply, and status synchronization instructions." }],
-        },
-        { id: "storage", title: "Storage", variant: "reference", blocks: [{ type: "paragraph", text: "This section is ready for persistent feedback data and uploaded asset storage instructions." }] },
-        { id: "analytics", title: "Analytics", variant: "reference", blocks: [{ type: "paragraph", text: "This section is ready for self-hosted usage and review workflow analytics instructions." }] },
-    ],
-    { installCommand: "" },
-);
+const apiSection = storageExamples.sections.find((section) => section.id === "api")!;
+const apiTabs = apiSection.blocks.find((block) => block.type === "tabs")!;
 
-export const guidesEn: GuideCollectionMessages = {
-    title: "Getting started guides",
-    description: "Start using Fivepixels with your team",
-    basePath: "/guides",
-    navHome: "Home",
-    codeCopy: "Copy",
-    codeCopied: "Copied",
-    onThisPage: "Adoption guides",
-    navGroups: [
-        {
-            label: "Start",
-            items: [
-                { slug: "quickstart", label: "Quick start" },
-                { slug: "rollout", label: "One-week plan" },
-                { slug: "rules", label: "Team rules" },
-            ],
-        },
-        {
-            label: "Framework quickstarts",
-            items: [
-                { slug: "react", label: "React" },
-                { slug: "nextjs", label: "Next.js" },
-            ],
-        },
-        {
-            label: "Review",
-            items: [
-                { slug: "client", label: "Client guide" },
-                { slug: "workflow", label: "Review workflow" },
-                { slug: "roles", label: "Roles" },
-            ],
-        },
-        {
-            label: "Reference",
-            items: [
-                { slug: "faq", label: "FAQ" },
-                { slug: "dom-tagging", label: "DOM tagging" },
-            ],
-        },
-        { label: "Self-host", items: [{ slug: "self-hosting", label: "Overview" }] },
-    ],
-    pages: { quickstart, react, nextjs, rollout, rules, client, workflow, roles, faq, "dom-tagging": domTagging, "self-hosting": selfHosting },
+const localStorage = makePage("local-storage", "STORAGE", "Save in this browser", "localStorage is the default. You can try Fivepixels without running a server.", [
+    {
+        id: "local-storage",
+        title: "No extra setup needed",
+        variant: "quick-start",
+        stepLabel: "LOCALSTORAGE",
+        blocks: [
+            { type: "codeRaw", language: "tsx", code: '<FivePixels project={{ id: "my-app" }} />' },
+            { type: "paragraph", text: "Feedback stays in this browser after a refresh. Other browsers and teammates will not see it, and clearing the site data removes it." },
+            { type: "link", href: "/docs/quickstart", label: "Leave your first feedback" },
+            { type: "link", href: "/docs/storage-settings#local-storage", label: "Need more settings?" },
+        ],
+    },
+]);
+
+const apiConnection = makePage("api-connection", "STORAGE", "Connect your API", "Save feedback on your own server so your team can see and review it together.", [
+    {
+        id: "before-you-start",
+        title: "What you need",
+        variant: "quick-start",
+        stepLabel: "API",
+        blocks: [
+            { type: "paragraph", text: "You need a server and database that can load, save, and update feedback. The URLs below are examples; create matching routes on your server or use your own URLs." },
+            { type: "paragraph", text: "FivePixelsAdapter connects Fivepixels to those routes. This example uses your API without a login step. You can connect login later." },
+        ],
+    },
+    {
+        ...apiSection,
+        blocks: [
+            ...apiTabs.tabs[0].blocks,
+            { type: "callout", variant: "info", text: "Keep the same project id for everyone reviewing this app. Use useMemo as shown so the API connection is not recreated on every render." },
+            { type: "link", href: "/docs/storage-settings#api", label: "More API settings and examples" },
+            { type: "link", href: "/docs/workflow", label: "Start reviewing with your team" },
+        ],
+    },
+    {
+        id: "requirements",
+        title: "What your API needs to do",
+        variant: "reference",
+        blocks: storageExamples.sections.find((section) => section.id === "artemis72")!.blocks.slice(1),
+    },
+    storageExamples.sections.find((section) => section.id === "migration")!,
+]);
+
+const artemis72 = makePage("artemis72", "STORAGE", "Artemis72", "A planned hosted service for saving and sharing Fivepixels feedback.", [
+    {
+        id: "artemis72",
+        title: "Coming soon",
+        variant: "reference",
+        blocks: [
+            { type: "paragraph", text: "Artemis72 is still being built. There is no setup to complete yet." },
+            { type: "actions", links: [
+                { href: "/docs/local-storage", label: "Try localStorage", description: "Start in this browser without a server" },
+                { href: "/docs/api-connection", label: "Connect your API", description: "Use your own server for team feedback" },
+            ] },
+        ],
+    },
+]);
+
+const persistence = makePage("persistence", "STORAGE", "Where feedback is saved", "Start in your browser. Connect your API when you need shared feedback. Artemis72 is coming later.", [
+    {
+        ...storageExamples.sections[0],
+        title: "Three storage modes",
+    },
+    ...[
+        { id: "local-storage", title: "localStorage", text: "The default. Save feedback in the current browser without a server.", href: "/docs/local-storage", label: "Use localStorage" },
+        { id: "api", title: "API", text: "Save and share feedback through your own server.", href: "/docs/api-connection", label: "Connect your API" },
+        { id: "artemis72", title: "Artemis72 — coming soon", text: "Our planned hosted service. Setup is not available yet.", href: "/docs/artemis72", label: "About Artemis72" },
+    ].map((mode): GuideSection => ({
+        id: mode.id, title: mode.title, variant: "reference",
+        blocks: [{ type: "paragraph", text: mode.text }, { type: "link", href: mode.href, label: mode.label }],
+    })),
+]);
+
+// Keep detailed examples available without putting them in the first-run path.
+const storageSettings: GuidePageMessages = {
+    ...storageExamples,
+    sections: storageExamples.sections
+        .filter((section) => !["storage-modes", "migration", "artemis72"].includes(section.id))
+        .map((section) => section.id === "local-storage" ? {
+            ...section,
+            blocks: section.blocks.map((block) => block.type === "tabs" ? {
+                ...block,
+                tabs: block.tabs.filter((tab) => tab.label !== "Quick start"),
+            } : block),
+        } : section),
 };
 
 export const docsEn: GuideCollectionMessages = {
-    title: "Developer docs",
-    description: "Install, configure, integrate, and handle edge cases",
+    title: "Docs",
+    description: "Install Fivepixels, leave your first feedback, and share it when you are ready.",
     basePath: "/docs",
     navHome: "Home",
     codeCopy: "Copy",
     codeCopied: "Copied",
-    onThisPage: "Developer docs",
+    onThisPage: "On this page",
     navGroups: [
-        {
-            label: "Start",
-            items: [
-                { slug: "setup", label: "Install Fivepixels" },
-                { slug: "dom-attributes", label: "DOM attributes" },
-                { slug: "modes", label: "Modes" },
-            ],
-        },
-        {
-            label: "Features",
-            items: [
-                { slug: "ui-edit", label: "UI Edit" },
-                { slug: "persistence", label: "Save feedback" },
-                { slug: "auth-and-team", label: "Auth and team" },
-                { slug: "github", label: "GitHub" },
-            ],
-        },
-        {
-            label: "Panel",
-            items: [
-                { slug: "panel-and-tabs", label: "Panel and tabs" },
-                { slug: "mentions-and-thread", label: "Threads and mentions" },
-                { slug: "import-export", label: "Import / Export" },
-            ],
-        },
-        {
-            label: "Reference",
-            items: [
-                { slug: "custom-ui", label: "Custom UI" },
-                { slug: "api", label: "Props API" },
-                { slug: "edge-cases", label: "Edge cases" },
-            ],
-        },
+        { label: "Getting started", items: [
+            { slug: "setup", label: "Install Fivepixels" },
+            { slug: "quickstart", label: "Your first feedback" },
+        ] },
+        { label: "Storage", items: [
+            { slug: "local-storage", label: "localStorage" },
+            { slug: "api-connection", label: "API" },
+            { slug: "artemis72", label: "Artemis72 — coming soon" },
+        ] },
+        { label: "Working together", items: [
+            { slug: "workflow", label: "Review with your team" },
+            { slug: "client", label: "Ask a client to review" },
+        ] },
+        { label: "Help", items: [
+            { slug: "faq", label: "Frequently asked questions" },
+            { slug: "edge-cases", label: "Troubleshooting" },
+        ] },
+        { label: "More settings", items: [
+            { slug: "dom-attributes", label: "Feedback locations" },
+            { slug: "ui-edit", label: "Preview UI changes" },
+            { slug: "auth-and-team", label: "Connect login" },
+            { slug: "github", label: "Connect GitHub" },
+            { slug: "api", label: "All settings and API" },
+        ] },
     ],
     pages: {
-        setup,
-        "dom-attributes": domAttributes,
-        modes,
-        "ui-edit": uiEdit,
-        persistence,
-        "auth-and-team": authTeam,
-        github,
-        "panel-and-tabs": panelTabs,
-        "mentions-and-thread": mentions,
-        "import-export": importExport,
-        "custom-ui": customUi,
-        api,
-        "edge-cases": edgeCases,
+        setup, react, nextjs, quickstart, workflow, client, faq,
+        persistence, "local-storage": localStorage, "api-connection": apiConnection, artemis72,
+        "storage-settings": storageSettings,
+        "dom-attributes": domAttributes, modes, "ui-edit": uiEdit,
+        "auth-and-team": authTeam, github, "panel-and-tabs": panelTabs,
+        "mentions-and-thread": mentions, "import-export": importExport,
+        "custom-ui": customUi, api, "edge-cases": edgeCases,
     },
 };
+
+// Compatibility for the existing guide component message key.
+export const guidesEn = docsEn;
